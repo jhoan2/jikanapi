@@ -9,7 +9,6 @@ const initialState = {
   animeList: [],
   query: "Naruto",
   page: 0,
-  nbPages: 0,
 };
 const AppContext = React.createContext();
 
@@ -33,8 +32,8 @@ const AppProvider = ({ children }) => {
     dispatch({ type: HANDLE_SEARCH, payload: query });
   };
   useEffect(() => {
-    fetchAnimes(`${API_ENDPOINT}/naruto`);
-  }, []);
+    fetchAnimes(`${API_ENDPOINT}${state.query}`);
+  }, [state.query]);
 
   return (
     <AppContext.Provider value={{ ...state, handleSearch }}>

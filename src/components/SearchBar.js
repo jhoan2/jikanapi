@@ -1,18 +1,31 @@
 import React from "react";
 import { useGlobalContext } from "../context";
+import { InputGroup, Button, FormControl } from "react-bootstrap";
 
 export default function SearchBar() {
   const { query, handleSearch } = useGlobalContext();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
-    <form className="search-form" onSubmit={(e) => e.preventDefault()}>
-      <h2>search hacker news</h2>
-      <input
+    <InputGroup className="mb-3">
+      <InputGroup.Prepend>
+        <Button
+          variant="outline-secondary"
+          type="submit"
+          onSubmit={handleSubmit}
+        >
+          Button
+        </Button>
+      </InputGroup.Prepend>
+      <FormControl
         type="text"
-        className="form-input"
         value={query}
-        onChange={(e) => handleSearch(e.target.value)}
+        onChange={(e) => {
+          handleSearch(e.target.value);
+        }}
       />
-    </form>
+    </InputGroup>
   );
 }

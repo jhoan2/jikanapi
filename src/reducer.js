@@ -7,25 +7,22 @@ import {
 } from "./actions";
 
 const reducer = (state, action) => {
+  console.log(state);
   switch (action.type) {
-    case SET_LOADING: {
-      return;
-    }
-    case HANDLE_SEARCH: {
+    case SET_LOADING:
+      return { ...state, isLoading: true };
+    case HANDLE_SEARCH:
       return { ...state, query: action.payload };
-    }
-    case HANDLE_PAGE: {
+    case HANDLE_PAGE:
       return;
-    }
-    case SET_ANIME: {
+    case SET_ANIME:
       return {
         ...state,
+        isLoading: false,
         animeList: action.payload.animeList,
       };
-    }
-    case REMOVE_ANIME: {
+    case REMOVE_ANIME:
       return;
-    }
     default:
       throw new Error(`no matching ${action.type}`);
   }
