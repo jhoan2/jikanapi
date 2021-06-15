@@ -1,5 +1,5 @@
 import React, { useContext, useReducer, useEffect } from "react";
-import { HANDLE_SEARCH, SET_ANIME, SET_LOADING } from "./actions";
+import { HANDLE_PAGE, HANDLE_SEARCH, SET_ANIME, SET_LOADING } from "./actions";
 import reducer from "./reducer";
 
 const API_ENDPOINT = "https://api.jikan.moe/v3/search/anime?q=";
@@ -8,10 +8,10 @@ const initialState = {
   isLoading: true,
   animeList: [],
   query: "Naruto",
-  page: 0,
+  page: 1,
+  lastPage: 0,
 };
 const AppContext = React.createContext();
-
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -21,22 +21,34 @@ const AppProvider = ({ children }) => {
       const response = await fetch(url);
       const data = await response.json();
       const animes = data;
-
-      dispatch({ type: SET_ANIME, payload: { animeList: animes.results } });
+      console.log(animes);
+      dispatch({
+        type: SET_ANIME,
+        payload: {
+          animeList: animes.results,
+          lastPage: animes.last_page,
+        },
+      });
     } catch (error) {
       console.log(error);
     }
   };
-
   const handleSearch = (query) => {
     dispatch({ type: HANDLE_SEARCH, payload: query });
   };
+
+  const handlePage = (value) => {
+    dispatch({ type: HANDLE_PAGE, payload: value });
+  };
+
   useEffect(() => {
-    fetchAnimes(`${API_ENDPOINT}${state.query}`);
-  }, [state.query]);
+    fetchAnimes(
+      `${API_ENDPOINT}${state.query}&page=${state.page}&genre=12&genre_exclude=0`
+    );
+  }, [state.query, state.page]);
 
   return (
-    <AppContext.Provider value={{ ...state, handleSearch }}>
+    <AppContext.Provider value={{ ...state, handleSearch, handlePage }}>
       {children}
     </AppContext.Provider>
   );

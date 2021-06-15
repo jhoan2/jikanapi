@@ -1,23 +1,17 @@
 import React from "react";
 import { useGlobalContext } from "../context";
-import { InputGroup, Button, FormControl } from "react-bootstrap";
+import { InputGroup, Badge, FormControl } from "react-bootstrap";
+import { FaSearch } from "react-icons/fa";
 
 export default function SearchBar() {
   const { query, handleSearch } = useGlobalContext();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
 
   return (
-    <InputGroup className="mb-3">
+    <InputGroup className="mb-3 p-5" onSubmit={(e) => e.preventDefault()}>
       <InputGroup.Prepend>
-        <Button
-          variant="outline-secondary"
-          type="submit"
-          onSubmit={handleSubmit}
-        >
-          Button
-        </Button>
+        <Badge variant="dark">
+          <FaSearch size={30} />
+        </Badge>
       </InputGroup.Prepend>
       <FormControl
         type="text"

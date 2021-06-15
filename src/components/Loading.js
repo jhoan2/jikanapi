@@ -3,7 +3,14 @@ import { Spinner } from "react-bootstrap";
 
 export default function Loading() {
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "200px",
+      }}
+    >
       <Spinner animation="grow" variant="dark" />
     </div>
   );

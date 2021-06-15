@@ -3,21 +3,38 @@ import { useGlobalContext } from "../context";
 import Anime from "./Anime";
 import Loading from "./Loading";
 import { Container } from "react-bootstrap";
-
 export default function AnimeList() {
   const { animeList, isLoading } = useGlobalContext();
   if (isLoading) {
-    return <Loading />;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
-  //loading is not working. ned to get that from the state isLoading
-  //gotta work on centering the container and then style the contents inside of it
-  // gotta get the search function working
+
+  if (!animeList) {
+    return (
+      <h2
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        No Animes Found
+      </h2>
+    );
+  }
+
   return (
-    <Container className="row justify-content-around ">
-      {animeList &&
-        animeList.map((item) => {
-          return <Anime key={item.id} {...item} />;
-        })}
+    <Container className="justify-content-center ">
+      <div className="row justify-content-around">
+        {animeList &&
+          animeList.map((item) => {
+            return <Anime key={item.id} {...item} />;
+          })}
+      </div>
     </Container>
   );
 }
