@@ -11,7 +11,7 @@ export default function Loading() {
         height: "200px",
       }}
     >
-      <Spinner animation="grow" variant="dark" />
+      <Spinner animation="grow" variant="dark" className="loading-spinner" />
     </div>
   );
 }

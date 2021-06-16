@@ -1,7 +1,8 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-export default function Anime({ title, image_url, synopsis, url }) {
+export default function Anime({ title, image_url, synopsis, mal_id: id }) {
   return (
     <div className="p-3">
       <Card style={{ width: "12rem" }} className="h-100">
@@ -9,8 +10,8 @@ export default function Anime({ title, image_url, synopsis, url }) {
         <Card.Body className="d-flex flex-column">
           <Card.Title>{title}</Card.Title>
           <Card.Text>{synopsis}</Card.Text>
-          <Button variant="primary" className="mt-auto" href={url}>
-            Read More
+          <Button variant="primary" className="mt-auto">
+            <Link to={`/cocktail/${id}`}>Read More</Link>
           </Button>
         </Card.Body>
       </Card>

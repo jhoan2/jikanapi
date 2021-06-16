@@ -21,7 +21,7 @@ const AppProvider = ({ children }) => {
       const response = await fetch(url);
       const data = await response.json();
       const animes = data;
-      console.log(animes);
+
       dispatch({
         type: SET_ANIME,
         payload: {

@@ -5,7 +5,6 @@ import { FaSearch } from "react-icons/fa";
 
 export default function SearchBar() {
   const { query, handleSearch } = useGlobalContext();
-
   return (
     <InputGroup className="mb-3 p-5" onSubmit={(e) => e.preventDefault()}>
       <InputGroup.Prepend>
@@ -14,6 +13,7 @@ export default function SearchBar() {
         </Badge>
       </InputGroup.Prepend>
       <FormControl
+        alt="searchbar"
         type="text"
         value={query}
         onChange={(e) => {
