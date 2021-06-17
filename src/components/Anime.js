@@ -10,8 +10,10 @@ export default function Anime({ title, image_url, synopsis, mal_id: id }) {
         <Card.Body className="d-flex flex-column">
           <Card.Title>{title}</Card.Title>
           <Card.Text>{synopsis}</Card.Text>
-          <Button variant="primary" className="mt-auto">
-            <Link to={`/cocktail/${id}`}>Read More</Link>
+          <Button variant="dark" className="mt-auto">
+            <Link key={id} to={`/anime/${id}`}>
+              Read More
+            </Link>
           </Button>
         </Card.Body>
       </Card>

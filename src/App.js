@@ -10,14 +10,14 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Header />
-        <SearchBar />
-        <Pages />
-        <AnimeList />
         <Switch>
-          <Route path="/anime/:id">
-            <MoreInfo />
+          <Route exact path="/">
+            <Header />
+            <SearchBar />
+            <Pages />
+            <AnimeList />
           </Route>
+          <Route path="/anime/:id" children={<MoreInfo />} />
         </Switch>
       </Router>
     </div>
