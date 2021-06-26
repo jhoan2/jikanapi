@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function Anime({ title, image_url, synopsis, mal_id: id }) {
   return (
     <div className="p-3">
-      <Card style={{ width: "12rem" }} className="h-100">
+      <Card style={{ width: "18rem" }} className="h-100">
         <Card.Img variant="top" src={image_url} />
         <Card.Body className="d-flex flex-column">
           <Card.Title>{title}</Card.Title>
