@@ -43,7 +43,7 @@ const AppProvider = ({ children }) => {
 
   useEffect(() => {
     fetchAnimes(
-      `${API_ENDPOINT}${state.query}&page=${state.page}&genre=12&genre_exclude=0`
+      `${API_ENDPOINT}${state.query}&page=${state.page}&sort=desc&genre_exclude=0`
     );
   }, [state.query, state.page]);
 
